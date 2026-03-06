@@ -1,0 +1,32 @@
+@use 'defaults.scss';
+@use 'variables.scss';
+@use 'mixins.scss' as *;
+
+.g-wrapper {
+  max-width: $breakpoint;
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+
+.borders {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: -1;
+  width: 1600px;
+  height: 100%;
+  border-left: 1px solid var(--colorBorder);
+  border-right: 1px solid var(--colorBorder);
+  pointer-events: none;
+
+  &.type2 {
+    width: 1400px;
+  }
+}
+
+
+p {
+  margin: 10px 0;
+}

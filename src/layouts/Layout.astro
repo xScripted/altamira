@@ -1,0 +1,74 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import Footer from "@/components/Footer.svelte";
+import Menu from "@/components/Menu.svelte";
+
+export interface Props {
+  title: string;
+}
+
+const props = Astro.props;
+const title = props.title;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Fabricación de estructuras de hormigón en Barcelona y alrededores."
+    />
+    <meta name="view-transition" content="same-origin" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/estructura.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Lexend:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Analytics />
+    <Menu client:load />
+
+    <slot />
+
+    <Footer />
+
+    <style lang="scss" is:global>
+      @use "@/sass/global.scss";
+    </style>
+  </body>
+</html>
+
+<script>
+  /* --- Smooth Scroll --- */
+  import Lenis from "lenis";
+  import "lenis/dist/lenis.css";
+
+  const lenis = new Lenis();
+
+  // Use requestAnimationFrame to continuously update the scroll
+  const raf = (time) => {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  };
+
+  requestAnimationFrame(raf);
+
+  // Handle anchor clicks
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = anchor.getAttribute("href");
+      if (target === "#" || !target) return;
+      lenis.scrollTo(target);
+    });
+  });
+</script>

@@ -1,17 +1,260 @@
 ---
+import Layout from "@/layouts/Layout.astro";
+import ServiceCard from "@/components/ServiceCard.svelte";
+import ProjectCard from "@/components/ProjectCard.svelte";
+import ContactSection from "@/components/ContactSection.svelte";
+import Collaborators from "@/components/Collaborators.svelte";
 
+const services = [
+  {
+    title: "Cimentaciones Profundas",
+    description:
+      "Si el suelo es una pesadilla, nosotros lo convertiremos en un búnker. Ejecutamos cimientos que aguantarían el fin del mundo.",
+  },
+  {
+    title: "Estructuras de Hormigón",
+    description:
+      "No hacemos manualidades. Construimos el esqueleto de tu edificio para que dentro de 100 años siga en el mismo sitio.",
+  },
+  {
+    title: "Muros y Forjados",
+    description:
+      "Precisión técnica para contener toneladas de presión. Lo que otros ven difícil, nosotros lo vemos como un reto.",
+  },
+  {
+    title: "Reformas Estructurales",
+    description:
+      "Intervenciones críticas para que no te despiertes con una grieta nueva cada mañana. Reforzamos lo que otros descuidaron.",
+  },
+];
+
+const projects = [
+  {
+    title: "Residencial Diagonal Mar",
+    location: "Barcelona",
+    image: "/obra.jpeg",
+    category: "Edificación",
+    description:
+      "Construcción integral de una torre de viviendas de lujo con acabados de alta calidad y sistemas de eficiencia energética avanzada.",
+  },
+  {
+    title: "Sede Corporativa Tech",
+    location: "Sabadell",
+    image: "/obra2.jpeg",
+    category: "Industria",
+    description:
+      "Ejecución de nave industrial de 5.000m2 con estructura reforzada para maquinaria pesada y oficinas técnicas integradas.",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style lang="scss">
+  section {
+    position: relative;
+    padding: 100px 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /*&::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 80px;
+      width: 100vw;
+      height: 1px;
+      background-color: var(--colorBorder);
+      transform: translateX(-50%);
+    } */
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 100vw;
+      height: 1px;
+      background-color: var(--colorBorder);
+      transform: translateX(-50%);
+    }
+  }
+
+  #colaboradores {
+    min-height: 0;
+  }
+
+  h1 {
+    font-size: 50px;
+    color: var(--colorText);
+    text-align: center;
+
+    span {
+      font-size: 70px;
+      color: var(--colorPrimary);
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-top: 100px;
+    text-align: center;
+    color: var(--colorText2);
+    text-transform: uppercase;
+    font-family: var(--fontSecondary);
+  }
+
+  h3 {
+    font-size: 50px;
+    margin-bottom: 50px;
+    color: var(--colorPrimary);
+    text-align: center;
+  }
+
+  #filosofia {
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .text {
+        max-width: 500px;
+      }
+
+      img {
+        width: 300px;
+      }
+    }
+  }
+
+  #servicios {
+    background-color: var(--colorNeutral);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<Layout title="Altamira Construcciones">
+  <main class="g-wrapper">
+    <section id="inicio">
+      <h1>
+        Si quieres hacer las cosas bien... <br />
+        <span>No empieces la casa por el tejado</span>
+      </h1>
+      <h2>Fabricación de estructuras de hormigón en Barcelona</h2>
+    </section>
+
+    <section id="filosofia">
+      <h3>Así trabajamos</h3>
+      <div class="content">
+        <img src="/estructura.png" alt="" />
+
+        <div class="text">
+          <p><strong>No se ve. Pero lo aguanta todo.</strong></p>
+
+          <p>
+            Cuando pasas por delante de un edificio bonito, ves el cristal, las
+            terrazas, la fachada.
+          </p>
+
+          <p>Pero hay algo que no ves.</p>
+
+          <p>
+            La cimentación.<br />
+            Los pilares.<br />
+            La estructura que hace que todo eso siga en pie dentro de 30, 50 o 100
+            años.
+          </p>
+
+          <p>Eso es lo que hacemos nosotros.</p>
+
+          <p>
+            No vendemos humo.<br />
+            No hacemos renders espectaculares.<br />
+            No te contamos cuentos chinos sobre plazos imposibles. Si es físicamente
+            viable, lo hacemos. Si no, te lo decimos a la cara y nos ahorramos todos
+            un disgusto.
+          </p>
+
+          <p>
+            Nosotros hacemos <strong
+              >la parte que no se ve… pero que lo sostiene todo</strong
+            >.
+          </p>
+
+          <p>
+            Cimentaciones bien hechas.<br />
+            Estructuras que cumplen.<br />
+            Obras que avanzan sin sustos.
+          </p>
+
+          <p>Porque cuando la estructura está mal, todo lo demás da igual.</p>
+
+          <p>Y cuando está bien…</p>
+
+          <p>
+            Nadie habla de ella.<br />
+            Y eso es exactamente lo que debe pasar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <h3>Lo que de verdad importa</h3>
+      <div class="services-grid">
+        {
+          services.map((service, index) => (
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              index={index}
+              client:load
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <h3>Lo que ya está en pie</h3>
+      <div class="projects-grid">
+        {
+          projects
+            .slice(0, 2)
+            .map((project, index) => (
+              <ProjectCard
+                title={project.title}
+                location={project.location}
+                image={project.image}
+                category={project.category}
+                description={project.description}
+                isReversed={index % 2 !== 0}
+                client:load
+              />
+            ))
+        }
+      </div>
+    </section>
+
+    <section id="colaboradores">
+      <h3>Marcas que no aceptan errores</h3>
+      <Collaborators client:load />
+    </section>
+
+    <section id="contacto">
+      <h3>Hablemos de no tirar el dinero</h3>
+      <ContactSection client:load />
+    </section>
+  </main>
+</Layout>
