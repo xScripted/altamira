@@ -1,0 +1,250 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Trabaja con nosotros - Altamira Construcciones">
+  <main class="recruitment-page">
+    <section class="hero-section">
+      <div class="g-wrapper">
+        <h1>
+          Únete al equipo <br />
+          <span>y construye tu futuro con nosotros</span>
+        </h1>
+        <h2>
+          Buscamos talento para seguir levantando las estructuras del mañana.
+        </h2>
+      </div>
+    </section>
+
+    <section class="content g-wrapper">
+      <div class="grid">
+        <div class="text">
+          <h2>¿Por qué Altamira?</h2>
+          <p>
+            En Altamira Construcciones no solo levantamos edificios, construimos
+            carreras profesionales basadas en el rigor técnico y el compromiso
+            con la calidad.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <h3>Rigor Técnico</h3>
+              <p>
+                Trabajamos con los más altos estándares de precisión en
+                estructuras de hormigón.
+              </p>
+            </div>
+            <div class="value">
+              <h3>Equipo Humano</h3>
+              <p>
+                Somos una empresa familiar donde cada profesional cuenta y su
+                desarrollo es nuestra prioridad.
+              </p>
+            </div>
+            <div class="value">
+              <h3>Proyectos de Impacto</h3>
+              <p>
+                Participamos en obras residenciales e industriales de referencia
+                en Barcelona.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <h3>Envíanos tu CV</h3>
+          <form
+            onsubmit="event.preventDefault(); alert('Gracias por tu interés. Nos pondremos en contacto contigo pronto.')"
+          >
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Tu nombre..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="tu@email.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="position">Puesto de interés</label>
+              <select id="position" name="position" required>
+                <option value="">Selecciona una opción...</option>
+                <option value="enconfrador">Encofrador/a</option>
+                <option value="ferrallista">Ferrallista</option>
+                <option value="capataz">Capataz de obra</option>
+                <option value="tecnico">Técnico/a de estudios</option>
+                <option value="otro">Otro perfil</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Cuéntanos sobre tu experiencia</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Breve resumen de tu trayectoria..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar candidatura</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style lang="scss">
+  .hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid var(--colorBorder);
+
+    h1 {
+      font-size: 50px;
+      color: var(--colorText);
+      line-height: 1.1;
+
+      span {
+        font-size: 70px;
+        color: var(--colorPrimary);
+        display: block;
+        margin-top: 10px;
+      }
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 40px;
+      color: var(--colorText2);
+      text-transform: uppercase;
+      font-family: var(--fontSecondary);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  .content {
+    padding: 100px 20px;
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+  }
+
+  .text {
+    h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--colorText2);
+      margin-bottom: 40px;
+    }
+
+    .values {
+      display: grid;
+      gap: 30px;
+
+      .value {
+        h3 {
+          font-size: 20px;
+          color: var(--colorPrimary);
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 16px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .form-container {
+    background: var(--colorSecondary);
+    padding: 50px;
+    border: 1px solid var(--colorBorder);
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+
+    h3 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+
+      label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: var(--colorText2);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 0;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--colorBorder);
+        font-family: inherit;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-bottom-color: var(--colorPrimary);
+        }
+      }
+
+      select {
+        cursor: pointer;
+      }
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--colorPrimary);
+      color: white;
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--colorText);
+        transform: translateY(-3px);
+      }
+    }
+  }
+</style>

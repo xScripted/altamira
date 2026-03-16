@@ -21,11 +21,6 @@ const services = [
     description:
       "Precisión técnica para contener toneladas de presión. Lo que otros ven difícil, nosotros lo vemos como un reto.",
   },
-  {
-    title: "Reformas Estructurales",
-    description:
-      "Intervenciones críticas para que no te despiertes con una grieta nueva cada mañana. Reforzamos lo que otros descuidaron.",
-  },
 ];
 
 const projects = [
@@ -58,17 +53,6 @@ const projects = [
     flex-direction: column;
     justify-content: center;
 
-    /*&::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 80px;
-      width: 100vw;
-      height: 1px;
-      background-color: var(--colorBorder);
-      transform: translateX(-50%);
-    } */
-
     &::after {
       content: "";
       position: absolute;
@@ -81,10 +65,6 @@ const projects = [
     }
   }
 
-  #colaboradores {
-    min-height: 0;
-  }
-
   h1 {
     font-size: 50px;
     color: var(--colorText);
@@ -92,7 +72,7 @@ const projects = [
 
     span {
       font-size: 70px;
-      color: var(--colorPrimary);
+      color: white;
     }
   }
 
@@ -110,108 +90,179 @@ const projects = [
     margin-bottom: 50px;
     color: var(--colorPrimary);
     text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* Hero video background */
+  #inicio {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    padding: 0;
+
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      color: white;
+      //text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 20px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+      z-index: 1;
+    }
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 0;
   }
 
   #filosofia {
     .content {
       display: flex;
-      align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
+      gap: 60px;
 
-      .text {
-        max-width: 500px;
+      /* Forzar que texto e imagen ocupen 50% cada uno */
+      .text,
+      img {
+        flex: 0 0 50%;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+          text-align: left;
+          margin-bottom: 30px;
+          margin-top: 0;
+        }
+
+        span {
+          color: var(--colorPrimary);
+        }
       }
 
+      /* Asegurar que la imagen escale correctamente dentro de su contenedor */
       img {
-        width: 300px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
       }
     }
   }
 
   #servicios {
     background-color: var(--colorNeutral);
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+
+      @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+      }
+    }
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin-top: 60px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    margin-top: 50px;
   }
 </style>
 
 <Layout title="Altamira Construcciones">
-  <main class="g-wrapper">
-    <section id="inicio">
-      <h1>
-        Si quieres hacer las cosas bien... <br />
-        <span>No empieces la casa por el tejado</span>
-      </h1>
-      <h2>Fabricación de estructuras de hormigón en Barcelona</h2>
-    </section>
+  <section id="inicio">
+    <!-- Video background -->
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/default.jpeg"
+    >
+      <source src="/video.mp4" type="video/mp4" />
+      Tu navegador no soporta la reproducción de video.
+    </video>
 
+    <div class="container g-wrapper">
+      <h1>
+        Las cosas bien hechas <br />
+        <span> empiezan por los cimientos </span>
+      </h1>
+      <h2>Estructuras de hormigón para promociones residenciales</h2>
+    </div>
+  </section>
+
+  <div class="g-wrapper">
     <section id="filosofia">
-      <h3>Así trabajamos</h3>
+      <h3>Conócenos</h3>
       <div class="content">
-        <img src="/estructura.png" alt="" />
+        <img src="/default.jpeg" alt="" />
 
         <div class="text">
-          <p><strong>No se ve. Pero lo aguanta todo.</strong></p>
-
+          <h2>
+            Una buena obra no empieza cuando se hormigona, <span
+              >empieza cuando se planifica.</span
+            >
+          </h2>
           <p>
-            Cuando pasas por delante de un edificio bonito, ves el cristal, las
-            terrazas, la fachada.
+            Somos una empresa familiar formada por dos generaciones dedicadas a
+            la construcción.
           </p>
-
-          <p>Pero hay algo que no ves.</p>
-
           <p>
-            La cimentación.<br />
-            Los pilares.<br />
-            La estructura que hace que todo eso siga en pie dentro de 30, 50 o 100
-            años.
+            Nos especializamos en la ejecución de estructuras de hormigón para
+            promociones residenciales, trabajando cada proyecto con un principio
+            claro: una buena obra empieza con una buena planificación.
           </p>
-
-          <p>Eso es lo que hacemos nosotros.</p>
-
           <p>
-            No vendemos humo.<br />
-            No hacemos renders espectaculares.<br />
-            No te contamos cuentos chinos sobre plazos imposibles. Si es físicamente
-            viable, lo hacemos. Si no, te lo decimos a la cara y nos ahorramos todos
-            un disgusto.
+            Creemos que planificar bien no solo permite optimizar los tiempos de
+            ejecución, sino también reducir costes y mejorar la organización en
+            obra.
           </p>
-
           <p>
-            Nosotros hacemos <strong
-              >la parte que no se ve… pero que lo sostiene todo</strong
-            >.
-          </p>
-
-          <p>
-            Cimentaciones bien hechas.<br />
-            Estructuras que cumplen.<br />
-            Obras que avanzan sin sustos.
-          </p>
-
-          <p>Porque cuando la estructura está mal, todo lo demás da igual.</p>
-
-          <p>Y cuando está bien…</p>
-
-          <p>
-            Nadie habla de ella.<br />
-            Y eso es exactamente lo que debe pasar.
+            Por eso analizamos cada proyecto antes de empezar, para que la
+            ejecución sea ordenada, eficiente y fiable.
           </p>
         </div>
       </div>
     </section>
 
     <section id="servicios">
-      <h3>Lo que de verdad importa</h3>
+      <h3>Servicios</h3>
       <div class="services-grid">
         {
           services.map((service, index) => (
@@ -219,7 +270,6 @@ const projects = [
               title={service.title}
               description={service.description}
               index={index}
-              client:load
             />
           ))
         }
@@ -227,7 +277,7 @@ const projects = [
     </section>
 
     <section id="proyectos">
-      <h3>Lo que ya está en pie</h3>
+      <h3>Proyectos</h3>
       <div class="projects-grid">
         {
           projects
@@ -247,14 +297,9 @@ const projects = [
       </div>
     </section>
 
-    <section id="colaboradores">
-      <h3>Marcas que no aceptan errores</h3>
-      <Collaborators client:load />
-    </section>
-
     <section id="contacto">
-      <h3>Hablemos de no tirar el dinero</h3>
+      <h3>Contacto</h3>
       <ContactSection client:load />
     </section>
-  </main>
+  </div>
 </Layout>

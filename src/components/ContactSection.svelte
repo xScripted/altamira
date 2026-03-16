@@ -3,12 +3,11 @@
 
 <div class="contact-container">
   <div class="contact-info">
-    <h4>Si buscas el presupuesto más barato, no nos contactes.</h4>
+    <h4>¿Tienes un proyecto en mente?</h4>
     <p>
-      No somos los más rápidos haciendo presupuestos, pero sí los más
-      concienzudos levantando estructuras. Si quieres que tu edificio no se
-      convierta en una anécdota en las noticias, escríbenos y hablamos de lo que
-      de verdad importa: que no se caiga.
+      Si necesitas asesoramiento técnico o un presupuesto para tu próxima obra,
+      estaremos encantados de ayudarte. Nuestro equipo analizará tus necesidades
+      para ofrecerte la mejor solución estructural.
     </p>
 
     <div class="info-item">
@@ -42,9 +41,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="email"
-          >¿Dónde te envío la respuesta para que la veas hoy mismo?</label
-        >
+        <label for="email">Correo electrónico</label>
         <input
           type="email"
           id="email"
@@ -58,11 +55,11 @@
         <textarea
           id="message"
           name="message"
-          placeholder="Dinos qué quieres construir y por qué deberíamos hacerlo nosotros."
+          placeholder="Cuéntanos más sobre tu proyecto..."
           required
         ></textarea>
       </div>
-      <button type="submit">Cuéntame tu proyecto</button>
+      <button type="submit">Enviar mensaje</button>
     </form>
   </div>
 </div>

@@ -2,6 +2,7 @@
 import Analytics from "@vercel/analytics/astro";
 import Footer from "@/components/Footer.svelte";
 import Menu from "@/components/Menu.svelte";
+import WhatsappButton from "@/components/WhatsappButton.svelte";
 
 export interface Props {
   title: string;
@@ -36,6 +37,7 @@ const title = props.title;
   <body>
     <Analytics />
     <Menu client:load />
+    <WhatsappButton client:load />
 
     <slot />
 
@@ -63,12 +65,23 @@ const title = props.title;
   requestAnimationFrame(raf);
 
   // Handle anchor clicks
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
-      e.preventDefault();
-      const target = anchor.getAttribute("href");
-      if (target === "#" || !target) return;
-      lenis.scrollTo(target);
+      const href = anchor.getAttribute("href");
+
+      // If it's a root-relative link (/#section) and we are on the homepage
+      // Or if it's a simple hash link (#section)
+      const targetId = href.split("#")[1];
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        e.preventDefault();
+        lenis.scrollTo(targetElement);
+
+        // Update URL hash without jumping
+        history.pushState(null, null, `#${targetId}`);
+      }
+      // If targetElement doesn't exist, let the normal navigation happen
     });
   });
 </script>

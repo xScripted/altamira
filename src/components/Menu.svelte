@@ -4,10 +4,23 @@
   let isScrolled = $state(false);
   let isOpen = $state(false);
   let activeSection = $state("");
+  let isHomepage = $state(false);
 
   if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
+    // Check if we are on the homepage
+    isHomepage = window.location.pathname === "/";
+
+    // Set initial state based on page
+    if (!isHomepage) {
+      isScrolled = true;
+    } else {
       isScrolled = window.scrollY > 50;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (isHomepage) {
+        isScrolled = window.scrollY > 50;
+      }
     });
   }
 
@@ -48,7 +61,9 @@
 <header class="header" class:scrolled={isScrolled} class:is-open={isOpen}>
   <div class="borders type2"></div>
   <div class="header__container g-wrapper">
-    <a href="#inicio" class="logo" onclick={closeMenu}>ALTAMIRA</a>
+    <a href="/" class="logo" onclick={closeMenu}>
+      <img src="/logo.png" alt="ALTAMIRA Logo" />
+    </a>
 
     <button
       class="burger"
@@ -63,25 +78,25 @@
 
     <nav class="nav" class:is-open={isOpen}>
       <a
-        href="#filosofia"
+        href="/#filosofia"
         class="nav__link"
         class:active={activeSection === "filosofia"}
-        onclick={closeMenu}>Filosofía</a
+        onclick={closeMenu}>Conócenos</a
       >
       <a
-        href="#servicios"
+        href="/#servicios"
         class="nav__link"
         class:active={activeSection === "servicios"}
         onclick={closeMenu}>Servicios</a
       >
       <a
-        href="#proyectos"
+        href="/#proyectos"
         class="nav__link"
         class:active={activeSection === "proyectos"}
         onclick={closeMenu}>Proyectos</a
       >
       <a
-        href="#contacto"
+        href="/#contacto"
         class="nav__link"
         class:active={activeSection === "contacto"}
         onclick={closeMenu}>Contacto</a
@@ -100,24 +115,53 @@
     display: flex;
     align-items: center;
     z-index: 100;
-    background-color: var(--colorNeutral);
+    background-color: transparent;
     border-bottom: 1px solid var(--colorBorder);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+
+    &.scrolled,
+    &.is-open {
+      background-color: var(--colorNeutral);
+      border-bottom: 1px solid var(--colorBorder);
+    }
 
     &__container {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0;
     }
   }
 
   .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+
     font-family: var(--fontPrimary);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 0.1em;
     color: var(--colorText);
     text-transform: uppercase;
+
+    img {
+      height: 70px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: filter 0.3s ease;
+
+      .header.scrolled &,
+      .header.is-open & {
+        filter: none;
+      }
+    }
   }
 
   .burger {
@@ -135,11 +179,16 @@
     &__line {
       width: 2rem;
       height: 0.15rem;
-      background: var(--colorText);
+      background: white;
       border-radius: 10px;
       transition: all 0.3s linear;
       position: relative;
       transform-origin: 1px;
+
+      .header.scrolled &,
+      .header.is-open & {
+        background: var(--colorText);
+      }
     }
   }
 
@@ -168,9 +217,14 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--colorText2);
+      color: white;
       transition: color 0.2s ease;
       position: relative;
+
+      .header.scrolled &,
+      .header.is-open & {
+        color: var(--colorText2);
+      }
 
       &:hover,
       &.active {

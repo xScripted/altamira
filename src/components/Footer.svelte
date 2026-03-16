@@ -4,14 +4,16 @@
 
 <footer class="footer">
   <div class="footer__container g-wrapper">
-    <div class="logo">ALTAMIRA</div>
-    <div class="copyright">© {currentYear} Altamira Construcciones.</div>
-    <div class="social">
+    <div class="footer__links">
+      <a href="/cookies">Cookies</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href="/trabaja-con-nosotros">Trabaja con nosotros</a>
       <a
         href="https://www.linkedin.com/company/altamira-construcciones"
         target="_blank">LinkedIn</a
       >
     </div>
+    <div class="copyright">© {currentYear} Altamira Construcciones.</div>
   </div>
 </footer>
 
@@ -46,17 +48,22 @@
     font-weight: 400;
   }
 
-  .social a {
-    font-family: var(--fontSecondary);
-    font-size: 0.8rem;
-    color: var(--colorText2);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.2s ease;
+  .footer__links {
+    display: flex;
+    gap: 1.5rem;
 
-    &:hover {
-      color: var(--colorPrimary);
+    a {
+      font-family: var(--fontSecondary);
+      font-size: 0.8rem;
+      color: var(--colorText2);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--colorPrimary);
+      }
     }
   }
 </style>
