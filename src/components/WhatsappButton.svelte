@@ -1,5 +1,5 @@
 <script>
-  const phone = "34934567890"; // Reemplazar con el número real
+  const phone = "34634952132";
   const message =
     "Hola, me gustaría solicitar información sobre vuestros servicios de estructuras.";
   const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
