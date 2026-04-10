@@ -69,13 +69,12 @@
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 100px;
-    margin-top: 60px;
 
-    @media (max-width: 992px) {
+    @media (max-width: 1100px) {
       gap: 50px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1100px) {
       grid-template-columns: 1fr;
       gap: 60px;
     }

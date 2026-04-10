@@ -1,17 +1,24 @@
 <script>
-  let { title, description, index } = $props();
+  let { title, description, index, image } = $props();
   const paddedIndex = $derived((index + 1).toString().padStart(2, "0"));
 </script>
 
 <div class="service-card">
-  <div class="card-bg-icon"></div>
-  <div class="card-header">
-    <span class="index">{paddedIndex}</span>
-    <div class="line"></div>
-  </div>
-  <div class="card-content">
-    <h3>{title}</h3>
-    <p>{description}</p>
+  {#if image}
+    <div class="card-image">
+      <img src={image} alt={title} />
+    </div>
+  {/if}
+  <div class="card-inner">
+    <div class="card-bg-icon"></div>
+    <div class="card-header">
+      <span class="index">{paddedIndex}</span>
+      <div class="line"></div>
+    </div>
+    <div class="card-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
   </div>
 </div>
 
@@ -19,7 +26,6 @@
   .service-card {
     background: var(--colorSecondary);
     border: 1px solid var(--colorBorder);
-    padding: 60px 40px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -38,6 +44,7 @@
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: 2;
     }
 
     &:hover {
@@ -62,7 +69,44 @@
         opacity: 0.08;
         color: var(--colorPrimary);
       }
+
+      .card-image img {
+        transform: scale(1.1);
+      }
     }
+  }
+
+  .card-image {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 0.2)
+      );
+    }
+  }
+
+  .card-inner {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
   }
 
   .card-bg-icon {

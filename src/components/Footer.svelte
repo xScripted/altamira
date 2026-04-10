@@ -25,20 +25,14 @@
       align-items: center;
       gap: 2rem;
 
-      @media (max-width: 600px) {
+      @media (max-width: 1100px) {
         flex-direction: column;
         text-align: center;
+        gap: 1.5rem;
+        padding-top: 30px;
+        padding-bottom: 30px;
       }
     }
-  }
-
-  .logo {
-    font-family: var(--fontPrimary);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    color: var(--colorText);
-    text-transform: uppercase;
   }
 
   .copyright {
@@ -51,6 +45,13 @@
   .footer__links {
     display: flex;
     gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 1100px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
 
     a {
       font-family: var(--fontSecondary);

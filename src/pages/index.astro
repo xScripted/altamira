@@ -7,38 +7,57 @@ import Collaborators from "@/components/Collaborators.svelte";
 
 const services = [
   {
-    title: "Cimentaciones Profundas",
+    title: "Cimentaciones",
+    image: "/cimentaciones_.png",
     description:
-      "Si el suelo es una pesadilla, nosotros lo convertiremos en un búnker. Ejecutamos cimientos que aguantarían el fin del mundo.",
+      "Nos adaptamos a cada cimentación y ejecutamos la solución adecuada para evitar asientos, fisuras y problemas futuros. La base de una obra segura empieza aquí.",
   },
   {
-    title: "Estructuras de Hormigón",
+    title: "Losas y muros",
+    image: "/losas_y_muros.jpg",
     description:
-      "No hacemos manualidades. Construimos el esqueleto de tu edificio para que dentro de 100 años siga en el mismo sitio.",
+      "Cuando hay presión, la estructura no puede fallar. Ejecutamos losas y muros preparados para soportar cargas reales y durar décadas sin problemas.",
   },
   {
     title: "Muros y Forjados",
+    image: "/forjados_1.jpg",
     description:
-      "Precisión técnica para contener toneladas de presión. Lo que otros ven difícil, nosotros lo vemos como un reto.",
+      "Cada planta de un edificio se sostiene sobre un forjado. Nos encargamos de que esa base sea sólida, precisa y preparada para durar décadas sin fallos.",
   },
 ];
 
 const projects = [
   {
-    title: "Residencial Diagonal Mar",
-    location: "Barcelona",
-    image: "/obra.jpeg",
+    title: "Promoción Residencial <br/> Can Gambus",
+    location: "Sabadell",
+    images: [
+      "/obra%20Sabadell/IMG_7501.JPEG",
+      "/obra%20Sabadell/D2CCEF36-9E4B-4FF2-AF0F-A7B4432B3741.JPEG",
+      "/obra%20Sabadell/IMG_7324.JPEG",
+      "/obra%20Sabadell/IMG_8687.JPEG",
+      "/obra%20Sabadell/D2D6318B-8F68-4598-B4ED-03BA1B87346F.JPEG",
+    ],
     category: "Edificación",
     description:
-      "Construcción integral de una torre de viviendas de lujo con acabados de alta calidad y sistemas de eficiencia energética avanzada.",
+      "Ejecución de estructura de hormigón en edificio plurifamiliar de 21 viviendas, incluyendo cimentación, muros y forjados. Desarrollo completo de la estructura, adaptando cada fase a las necesidades del proyecto y garantizando estabilidad y precisión en la ejecución.",
+    meta: "3.455,50 m² · 6 forjados · cimentación mediante solera",
+    client: "TARRACO",
   },
   {
-    title: "Sede Corporativa Tech",
-    location: "Sabadell",
-    image: "/obra2.jpeg",
-    category: "Industria",
+    title: "Remodelación <br/> Oficinas Glorias",
+    location: "Barcelona",
+    images: [
+      "/obra.jpeg",
+      "/obra%20Peru/43119172-133D-4EF4-BEB5-D85B5CF8E59F.JPEG",
+      "/obra%20Peru/3fb2933b-8bf4-44e7-b179-f9b74425cd67.JPEG",
+      "/obra%20Peru/4b012982-38cc-45d2-b356-3a3a5b086541.JPEG",
+      "/obra%20Peru/790fc56b-b03d-47bb-8027-3677206e6ee1.JPEG",
+    ],
+    category: "Rehabilitación",
     description:
-      "Ejecución de nave industrial de 5.000m2 con estructura reforzada para maquinaria pesada y oficinas técnicas integradas.",
+      "Remodelación integral de oficinas con intervención sobre estructura existente, manteniendo techos de vuelta catalana y reconstruyendo soleras y forjados. Ejecución de nuevos forjados sobre estructura sin pilares, mediante vigas metálicas, con acabado de hormigón visto en todos los elementos estructurales.",
+    meta: "3.515,62 m² · intervención sobre estructura existente · hormigón visto",
+    client: "COPCISA",
   },
 ];
 ---
@@ -66,31 +85,42 @@ const projects = [
   }
 
   h1 {
-    font-size: 50px;
+    font-size: 60px;
     color: var(--colorText);
     text-align: center;
 
     span {
-      font-size: 70px;
+      font-size: 80px;
       color: white;
+    }
+
+    @media (max-width: 1100px) {
+      font-size: 36px;
+      span {
+        font-size: 42px;
+      }
     }
   }
 
   h2 {
-    font-size: 20px;
-    margin-top: 100px;
+    font-size: 22px;
     text-align: center;
-    color: var(--colorText2);
+    color: var(--colorText3);
     text-transform: uppercase;
     font-family: var(--fontSecondary);
   }
 
   h3 {
     font-size: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 120px;
     color: var(--colorPrimary);
     text-align: center;
     text-transform: uppercase;
+
+    @media (max-width: 1100px) {
+      font-size: 32px;
+      margin-bottom: 60px;
+    }
   }
 
   /* Hero video background */
@@ -114,13 +144,6 @@ const projects = [
       color: white;
       //text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
       margin-bottom: 50px;
-    }
-
-    h2 {
-      color: rgba(255, 255, 255, 0.9);
-      margin-top: 20px;
-      font-weight: 300;
-      letter-spacing: 0.1em;
     }
 
     &::before {
@@ -150,19 +173,22 @@ const projects = [
       justify-content: space-between;
       gap: 60px;
 
+      @media (max-width: 1100px) {
+        flex-direction: column;
+        gap: 40px;
+      }
+
       /* Forzar que texto e imagen ocupen 50% cada uno */
       .text,
       img {
-        flex: 0 0 50%;
+        flex: 1;
         max-width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
-        h2 {
-          text-align: left;
-          margin-bottom: 30px;
-          margin-top: 0;
+        @media (max-width: 1100px) {
+          max-width: 100%;
         }
 
         span {
@@ -178,6 +204,34 @@ const projects = [
         display: block;
       }
     }
+
+    h5 {
+      font-family: var(--fontSecondary);
+      font-size: 20px;
+      font-weight: bold;
+
+      @media (max-width: 1100px) {
+        font-size: 18px;
+      }
+    }
+
+    h4 {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 24px;
+      font-family: var(--fontSecondary);
+      font-weight: 500;
+      color: var(--colorText2);
+
+      @media (max-width: 1100px) {
+        font-size: 18px;
+        margin-top: 40px;
+      }
+
+      span {
+        color: var(--colorPrimary);
+      }
+    }
   }
 
   #servicios {
@@ -187,9 +241,8 @@ const projects = [
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      margin-top: 50px;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1100px) {
         grid-template-columns: 1fr;
       }
     }
@@ -198,8 +251,20 @@ const projects = [
   .projects-grid {
     display: flex;
     flex-direction: column;
-    gap: 80px;
-    margin-top: 50px;
+    gap: 150px;
+  }
+
+  #galeria {
+    padding: 100px 0;
+    min-height: auto;
+
+    h3 {
+      margin-bottom: 60px;
+    }
+
+    &::after {
+      display: none;
+    }
   }
 </style>
 
@@ -234,14 +299,12 @@ const projects = [
         <img src="/default.jpeg" alt="" />
 
         <div class="text">
-          <h2>
-            Una buena obra no empieza cuando se hormigona, <span
-              >empieza cuando se planifica.</span
-            >
-          </h2>
+          <h5>Empresa familiar, implicación directa en cada obra</h5>
+
+          <br />
           <p>
-            Somos una empresa familiar formada por dos generaciones dedicadas a
-            la construcción.
+            Altamira construcciones es una empresa familiar formada por dos
+            generaciones dedicadas a la construcción.
           </p>
           <p>
             Nos especializamos en la ejecución de estructuras de hormigón para
@@ -259,6 +322,11 @@ const projects = [
           </p>
         </div>
       </div>
+
+      <h4>
+        Una buena obra no empieza cuando se hormigona. <br />
+        <span>Empieza cuando se planifica.</span>
+      </h4>
     </section>
 
     <section id="servicios">
@@ -268,6 +336,7 @@ const projects = [
           services.map((service, index) => (
             <ServiceCard
               title={service.title}
+              image={service.image}
               description={service.description}
               index={index}
             />
@@ -286,9 +355,11 @@ const projects = [
               <ProjectCard
                 title={project.title}
                 location={project.location}
-                image={project.image}
+                images={project.images}
                 category={project.category}
                 description={project.description}
+                meta={project.meta}
+                client={project.client}
                 isReversed={index % 2 !== 0}
                 client:load
               />

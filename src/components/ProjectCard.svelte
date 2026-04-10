@@ -1,10 +1,13 @@
 <script>
+  import ImageSlider from "./ImageSlider.svelte";
   let {
     title,
     location,
-    image,
+    images = [],
     category,
     description,
+    meta,
+    client,
     isReversed = false,
   } = $props();
 </script>
@@ -12,12 +15,23 @@
 <div class="project-card" class:is-reversed={isReversed}>
   <div class="image-box">
     <div class="category-tag">{category}</div>
-    <img src={image} alt={title} />
+    <ImageSlider {images} />
   </div>
   <div class="info-box">
     <span class="location">{location}</span>
-    <h3>{title}</h3>
+    <h3>{@html title}</h3>
     <p class="description">{description}</p>
+
+    {#if meta}
+      <p class="meta">{meta}</p>
+    {/if}
+
+    {#if client}
+      <div class="client-info">
+        <span class="label">Constructora:</span>
+        <span class="value">{client}</span>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -26,13 +40,12 @@
     display: flex;
     gap: 40px;
     align-items: center;
-    padding: 40px 0;
 
-    @media (max-width: 992px) {
+    @media (max-width: 1100px) {
       gap: 40px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1100px) {
       flex-direction: column;
       gap: 30px;
       align-items: flex-start;
@@ -40,14 +53,14 @@
     }
 
     &.is-reversed {
-      @media (min-width: 769px) {
+      @media (min-width: 1101px) {
         flex-direction: row-reverse;
       }
     }
 
     &:hover {
-      .image-box img {
-        filter: grayscale(0);
+      .image-box {
+        border-color: var(--colorPrimary);
       }
     }
 
@@ -56,6 +69,8 @@
       aspect-ratio: 16/10;
       overflow: hidden;
       position: relative;
+      border: 1px solid var(--colorBorder);
+      transition: border-color 0.3s ease;
 
       .category-tag {
         position: absolute;
@@ -70,15 +85,6 @@
         letter-spacing: 1px;
         z-index: 2;
         color: var(--colorText);
-      }
-
-      img {
-        transition: 0.3s ease;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(1) opacity(0.8);
-        border: 1px solid var(--colorBorder);
       }
     }
 
@@ -108,8 +114,41 @@
         font-size: 18px;
         color: var(--colorText2);
         line-height: 1.6;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         font-family: var(--fontSecondary);
+      }
+
+      .meta {
+        font-family: var(--fontSecondary);
+        font-size: 15px;
+        color: var(--colorText2);
+        opacity: 0.8;
+        margin-bottom: 25px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .client-info {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        font-family: var(--fontSecondary);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-top: 20px;
+        border-top: 1px solid var(--colorBorder);
+
+        .label {
+          color: var(--colorPrimary);
+          font-weight: 700;
+        }
+
+        .value {
+          color: var(--colorText);
+          font-weight: 600;
+        }
       }
     }
   }

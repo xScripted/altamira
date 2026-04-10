@@ -62,7 +62,7 @@
   <div class="borders type2"></div>
   <div class="header__container g-wrapper">
     <a href="/" class="logo" onclick={closeMenu}>
-      <img src="/logo.png" alt="ALTAMIRA Logo" />
+      <img height="40px" src="/logo.svg" alt="ALTAMIRA Logo" />
     </a>
 
     <button
@@ -94,6 +94,12 @@
         class="nav__link"
         class:active={activeSection === "proyectos"}
         onclick={closeMenu}>Proyectos</a
+      >
+      <a
+        href="/#galeria"
+        class="nav__link"
+        class:active={activeSection === "galeria"}
+        onclick={closeMenu}>Obras</a
       >
       <a
         href="/#contacto"
@@ -132,35 +138,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0;
-    }
-  }
-
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
-
-    font-family: var(--fontPrimary);
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
-    color: var(--colorText);
-    text-transform: uppercase;
-
-    img {
-      height: 70px;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      transition: filter 0.3s ease;
-
-      .header.scrolled &,
-      .header.is-open & {
-        filter: none;
-      }
+      padding: 0 20px;
     }
   }
 
@@ -248,7 +226,7 @@
     }
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
     .burger {
       display: flex;
     }
