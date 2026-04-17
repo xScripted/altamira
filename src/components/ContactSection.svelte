@@ -5,26 +5,26 @@
   <div class="contact-info">
     <h4>¿Tienes un proyecto en mente?</h4>
     <p>
-      Si necesitas asesoramiento técnico o un presupuesto para tu próxima obra,
-      estaremos encantados de ayudarte. Nuestro equipo analizará tus necesidades
-      para ofrecerte la mejor solución estructural.
+      Si necesitas un presupuesto para tu próxima obra, estaremos encantados de
+      ayudarte. Nuestro equipo analizará tus necesidades para ofrecerte la mejor
+      solución estructural.
     </p>
 
     <div class="info-item">
       <span class="label">Oficina</span>
-      <span>Carrer de la Construcció, 12, 08001 Barcelona</span>
+      <span>Carrer de Pere Martell, 76, 08917, Badalona</span>
     </div>
 
     <div class="info-item">
       <span class="label">Email</span>
-      <a href="mailto:info@altamira-construcciones.com"
-        >info@altamira-construcciones.com</a
+      <a href="mailto:ruben@construccionesaltamira.com"
+        >ruben@construccionesaltamira.com</a
       >
     </div>
 
     <div class="info-item">
       <span class="label">Teléfono</span>
-      <a href="tel:+34934567890">+34 934 567 890</a>
+      <a href="tel:+34634952132">634 952 132</a>
     </div>
   </div>
 

@@ -39,7 +39,7 @@
   .project-card {
     display: flex;
     gap: 40px;
-    align-items: center;
+    align-items: stretch;
 
     @media (max-width: 1100px) {
       gap: 40px;
@@ -90,6 +90,9 @@
 
     .info-box {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       .location {
         font-family: var(--fontSecondary);
@@ -121,7 +124,7 @@
       .meta {
         font-family: var(--fontSecondary);
         font-size: 15px;
-        color: var(--colorText2);
+        color: var(--colorText);
         opacity: 0.8;
         margin-bottom: 25px;
         letter-spacing: 0.05em;

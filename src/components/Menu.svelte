@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  let isScrolled = $state(false);
+  let isScrolled = $state(true);
   let isOpen = $state(false);
   let activeSection = $state("");
   let isHomepage = $state(false);
@@ -9,19 +9,6 @@
   if (typeof window !== "undefined") {
     // Check if we are on the homepage
     isHomepage = window.location.pathname === "/";
-
-    // Set initial state based on page
-    if (!isHomepage) {
-      isScrolled = true;
-    } else {
-      isScrolled = window.scrollY > 50;
-    }
-
-    window.addEventListener("scroll", () => {
-      if (isHomepage) {
-        isScrolled = window.scrollY > 50;
-      }
-    });
   }
 
   onMount(() => {
@@ -96,12 +83,6 @@
         onclick={closeMenu}>Proyectos</a
       >
       <a
-        href="/#galeria"
-        class="nav__link"
-        class:active={activeSection === "galeria"}
-        onclick={closeMenu}>Obras</a
-      >
-      <a
         href="/#contacto"
         class="nav__link"
         class:active={activeSection === "contacto"}
@@ -121,7 +102,7 @@
     display: flex;
     align-items: center;
     z-index: 100;
-    background-color: transparent;
+    background-color: var(--colorSecondary);
     border-bottom: 1px solid var(--colorBorder);
     transition:
       background-color 0.3s ease,
@@ -129,7 +110,7 @@
 
     &.scrolled,
     &.is-open {
-      background-color: var(--colorNeutral);
+      background-color: var(--colorSecondary);
       border-bottom: 1px solid var(--colorBorder);
     }
 
@@ -157,7 +138,7 @@
     &__line {
       width: 2rem;
       height: 0.15rem;
-      background: white;
+      background: var(--colorText);
       border-radius: 10px;
       transition: all 0.3s linear;
       position: relative;
@@ -195,7 +176,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: white;
+      color: var(--colorText2);
       transition: color 0.2s ease;
       position: relative;
 
@@ -237,7 +218,7 @@
       right: 0;
       width: 100%;
       height: 100vh;
-      background-color: var(--colorNeutral);
+      background-color: var(--colorSecondary);
       flex-direction: column;
       justify-content: center;
       align-items: center;
